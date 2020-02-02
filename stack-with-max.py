@@ -1,19 +1,27 @@
-class StackWithMax:
+class Stack:
     def __init__(self):
-        self.max_stack = [0]
+        self.stack = []
+
+    def __bool__(self):
+        return bool(self.stack)
 
     def push(self, element):
-        self.max_stack.append(max(self.max_stack[-1], element))
+        if self.stack:
+            self.stack.append((element, max(element, self.stack[-1][1])))
+        else:
+            self.stack.append((element, element))
 
     def pop(self):
-        self.max_stack.pop()
+        return self.stack.pop()[0]
 
-    def max(self):
-        return self.max_stack[-1]
+    def get_max(self):
+        if not self.stack:
+            return -math.inf
+        return self.stack[-1][1]
 
 
 def main():
-    a = StackWithMax()
+    a = Stack()
 
     n = int(input())
 
@@ -22,7 +30,7 @@ def main():
         if command == 'pop':
             a.pop()
         elif command == 'max':
-            print(a.max())
+            print(a.get_max())
         else:
             a.push(int(command.split()[1]))
 
