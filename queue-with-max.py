@@ -43,23 +43,20 @@ class Queue:
 
 def main():
     a = Queue()
-    a.push(2)
-    a.push(7)
-    a.push(3)
-    a.push(1)
-    print(a.get_max())
-    a.push(5)
-    a.pop()
-    print(a.get_max())
-    a.push(2)
-    a.pop()
-    print(a.get_max())
-    a.push(6)
-    a.pop()
-    print(a.get_max())
-    a.push(2)
-    a.pop()
-    print(a.get_max())
+
+    n = int(input())
+    lst = [int(element) for element in input().split()]
+    m = int(input())
+
+    for i in range(m):
+        a.push(lst[i])
+    print(a.get_max(), end=' ')
+
+    for i in range(m, n):
+        a.push(lst[i])
+        a.pop()
+        print(a.get_max(), end=' ')
+
 
 if __name__ == '__main__':
     main()
